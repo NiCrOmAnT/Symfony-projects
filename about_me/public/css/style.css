@@ -1,0 +1,267 @@
+* 
+{
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+}
+
+body 
+{
+	display: grid;
+	grid-template-areas:
+	". n  n  n  n  ."
+	"ba . .  .  .  ."
+	". p  q  q  .  ."
+	". l  t  t  .  ."
+	". h2 h2 h2 h2 ."
+	". f1 f2 f3 f4 ."
+	". .  bo bo .  ."
+	"f f  f  f  f  f";
+	grid-template-rows: 50px 170px 350px 590px 50px 800px 100px 70px;
+	grid-template-columns: 340px repeat(4, 285px) 340px;
+	grid-row-gap: 20px;
+	grid-column-gap: 20px; 
+	height: 100vh;
+	margin: 0;
+}
+
+.nav
+{
+	font: 19px/32px Georgia;
+	grid-area: n;
+	position: relative;
+	left: 120px;
+	color: #333333;
+}
+
+ul.nav
+{
+    list-style: none;
+}
+
+.nav li 
+{ 
+    float: left;
+}
+
+ul.nav a 
+{
+    display: block;
+    padding-top: 10px;
+    padding-left: 21px;
+    padding-right: 20px;
+    height: 50px;
+    color: #333;
+    text-align: center;
+}
+
+ul.nav a:hover
+{
+    background-color: #15a98c;
+    color: #f4f4f4;
+}
+
+.icon
+{
+	padding-right: 10px;
+}
+
+.background
+{
+	grid-area: ba;
+	position: relative;
+	top: -20px;
+}
+
+.photo_block
+{	
+	grid-area: p;
+	position: relative;
+	left: 120px;
+	border-radius: 5px;
+	width: 330px;
+	height: 350px;
+}
+
+
+.quote
+{
+	grid-area: q;
+	position: relative;
+	left: 208px;
+	top: 25px;
+}
+
+.quote_text
+{
+	font: italic 28px/1.5 Georgia;
+	color: #ffffff;
+	position: relative;
+}
+
+.quote_author
+{
+	font: 600 16px/47px Open Sans;	
+	color: #ffffff;
+	padding-left: 3px;
+}
+
+.list_block
+{
+	grid-area: l;
+	position: relative;
+	left: 120px;
+	top: 30px;
+}
+
+.main_block
+{
+	grid-area: t;
+	position: relative;
+	left: 205px;
+	top: -130px;
+	width: 560px;
+}
+h3
+{ 
+	position: relative;
+	top: -6px;
+	color: #15a98c;
+	font: 600 24px Open Sans;
+}
+.list
+{
+	color: #555555;
+	padding-left: 21px;
+	padding-top: 7px;
+	padding-bottom: 45px;
+	font: 19px/36px Georgia;
+}
+h1
+{
+	position: relative;
+	font: 700 48px/42px Open Sans;
+	color: #333333;
+	top: -5px;
+	left: 4px;
+}
+
+.main_text
+{
+	color: #555555;
+	padding-top: 58px;
+	font: 19px/32px Georgia;
+}
+
+.line
+{
+	position: relative;
+	top: 19px;
+	left: -1px;
+}
+
+.hobby
+{
+	position: relative;
+	left: -2px;
+	top: 42px;
+}
+
+h2
+{
+	color: #333333;
+	font: 400 36px/42px Open Sans;
+}
+
+.link
+{
+	position: relative;
+	top: 42px;
+	font: 19px/32px Georgia;
+	color: #15a98b;
+}
+
+.link:hover
+{
+    color: #098d72;
+}
+
+.link_underline
+{
+    text-decoration: underline;
+}
+
+.films_header
+{
+	grid-area: h2;
+	position: relative;
+	top: -5px; 
+}
+
+.film_text
+{
+	color: #555555;
+	font: 16px/28px Georgia;
+}
+
+.film1
+{
+	grid-area: f1;	
+}
+
+.film2
+{
+	grid-area: f2;
+}
+
+.film3
+{
+	grid-area: f3;	
+}
+
+.film4
+{
+	grid-area: f4;
+}
+
+h4
+{
+	position: relative;
+	left: -2px;
+	padding-top: 14px;
+	padding-bottom: 17px;
+	color: #333333;
+	font: 700 22px/32px Open Sans;	
+}
+
+footer
+{
+	font: 16px/2 Georgia;
+	background: #f5f5f5;
+	grid-area: f;
+	color: #555555;
+	text-align: center;
+	padding: 20px;
+	padding-left: 0px;
+}
+
+.button
+{
+	font: 19px/32px Georgia;
+	padding-top: 9px;
+	text-align: center;
+	color: #f5f5f5;
+	grid-area: bo;
+	text-decoration: none;
+	background: #15a98c;
+	border-radius: 5px;
+	width: 220px;
+	height: 41px;
+	position: relative;
+	left: 175px;
+}
+.button:hover
+{
+	background-color: #098d71;
+}
+
