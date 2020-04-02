@@ -1,4 +1,7 @@
-
+    {% block stylesheets %}
+      <link href="{{ asset('css/style.css') }}" type="text/css" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800&display=swap" rel="stylesheet">
+    {% endblock %}
     {% block title %}About me{% endblock %}
     {% extends 'base.html.twig' %}
     {% block body %}
