@@ -206,7 +206,7 @@ h2
 
 .film1
 {
-	grid-area: f1;	
+	grid-area: f1;
 }
 
 .film2
@@ -222,6 +222,13 @@ h2
 .film4
 {
 	grid-area: f4;
+}
+
+.film_image
+{
+	border-radius: 5px;
+	width: 285px;
+	height: 190px;
 }
 
 h4
@@ -260,6 +267,7 @@ footer
 	position: relative;
 	left: 175px;
 }
+
 .button:hover
 {
 	background-color: #098d71;
