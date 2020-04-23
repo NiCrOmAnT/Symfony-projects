@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+    {% block nav %}
+      <a href="/registration"><button class="reg_button">Регистрация</button></a>
+      <a href="/login"><button class="login_button">Вход</button></a> 
+    {% endblock %}
+    {% block content %}
+      <table class="order_table">
+        <tr class="table_header">
+          <th class="order_number" width="188">Имя</th>
+          <td width="210">Почта</td>
+          <td width="210">Пароль</td>
+          <td width="270">Адрес</td>
+        </tr>
+        {% for user in users %}
+          <tr>
+            <td class="order_number">{{user['name']}}</td>
+            <td>{{user['email']}}</td>
+            <td>{{user['password']}}</td>
+            <td>{{user['address']}}</td>
+          </tr>
+        {% endfor %} 
+      </table>    
+        
+    {% endblock %}  

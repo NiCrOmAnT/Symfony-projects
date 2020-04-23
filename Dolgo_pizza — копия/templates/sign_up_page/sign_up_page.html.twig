@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+		
+		{% block nav %}
+      <a href="/login"><button class="login_button">Вход</button></a>	
+		{% endblock %}
+		{% block content %}
+			<div class="form_block">
+				<h3 class="sing_up_header">Регистрация</h3>
+				<form action="signup.php">
+					<input class="field" type="text" name="name" placeholder="ФИО">
+					<input class="field" type="email" name="email" placeholder="Почта">	
+					<input class="field" type="password" name="password" placeholder="Пароль">	
+					<input class="field" type="text" name="adres" placeholder="Адрес доставки">
+					<input class="submit_button" type="submit" value="Зарегистрироваться">		
+				</form>
+			</div>
+		{% endblock %}

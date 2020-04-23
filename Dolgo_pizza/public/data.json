@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Марат Нуреев",
+        "email": "maratnureev@mail.ru",
+        "password": "87654321",
+        "address": "Красноармейская 120"
+    },
+    {
+        "name": "Марат Нуреев1",
+        "email": "maratnureev1@mail.ru",
+        "password": "0987654321",
+        "address": "Красноармейская 120"
+    },
+    {
+        "name": "Марат Нуреев2",
+        "email": "maratnureev2@mail.ru",
+        "password": "0987654",
+        "address": "Красноармейская 120"
+    },
+    {
+        "name": "Марат Нуреев3",
+        "email": "maratnureev3@mail.ru",
+        "password": "qwertytuiu1234",
+        "address": "Красноармейская 120"
+    },
+    {
+        "name": "Марат Нуреев",
+        "email": "maratnureev@mail.ru",
+        "password": "oiuytrert",
+        "address": "Красноармейская 120"
+    }
+]

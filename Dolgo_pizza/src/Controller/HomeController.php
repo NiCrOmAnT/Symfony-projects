@@ -12,6 +12,8 @@ class HomeController extends AbstractController
     */
     public function renderMainPage()
     {
-        return $this->render('home_page/menu.html.twig');
+        $file_name = 'pizzas.json';
+        $pizzas = json_decode(file_get_contents($file_name));
+        return $this->render('home_page/menu.html.twig', array('pizzas' => $pizzas));
     }
 }
