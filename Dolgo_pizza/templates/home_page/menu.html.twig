@@ -47,14 +47,16 @@
               <td width="270">Адрес</td>
               <td class="last_col" width="300">Статус</td>
             </tr>
-            <tr>
-              <td class="order_number"> 1234123</td>
-              <td>Пожилая пицца</td>
-              <td>520р</td>
-              <td>Нуреев Марат</td>
-              <td>ыовларпвылоапры</td>
-              <td>ывапываооплрвыап</td>
-            </tr>
+            {% for order in orders %}
+              <tr>
+                <td class="order_number">#{{order.number}}</td>
+                <td>{{order.pizza}}</td>
+                <td>{{order.price}}</td>
+                <td>{{order.name}}</td>
+                <td>{{order.address}}</td>
+                <td>{{order.status}}</td>
+              </tr>
+            {% endfor %}
           </table>
         </div>
       </div>

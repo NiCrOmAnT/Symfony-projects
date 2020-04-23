@@ -70,5 +70,11 @@
         "email": "maran@mail.ru",
         "password": "1234123412341",
         "address": "Красноармейская 120"
+    },
+    {
+        "name": "Марат Нуреев",
+        "email": "maratnureev889@mail.ru",
+        "password": "132423452345234",
+        "address": "Красноармейская 120"
     }
 ]
