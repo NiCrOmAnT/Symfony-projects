@@ -27,9 +27,16 @@ class SignUpContoller extends AbstractController
         
 
         if ($form->isSubmitted() && $form->isValid()) {
-            
-            $user = UserRepository::addUser($user, $form, $file_name);
-            return $this->redirect("/", 308);
+            if (!UserRepository::findUser($user, $form, $file_name)) 
+            {        
+                // return $this->redirect("/", 308);
+                $user = UserRepository::addUser($user, $form, $file_name);
+                $this->addFlash('success', 'Вы успешно зарегистрированы!');
+            }
+            else
+            {
+                $this->addFlash('warning', 'Пользователь с такой почтой уже существует.');
+            }
         } 
 
         return $this->render('sign_up_page/sign_up_page.html.twig', [

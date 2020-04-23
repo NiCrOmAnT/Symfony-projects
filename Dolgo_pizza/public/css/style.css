@@ -248,8 +248,7 @@ th
 	font: 24px/28px Roboto;
 }
 
-.hidden_block
+.alert
 {
-	display: none;
-	visibility: hidden;
+	margin-bottom: 2rem;
 }

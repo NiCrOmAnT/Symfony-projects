@@ -27,4 +27,23 @@ class UserRepository
         file_put_contents($file_name, json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
 
     }
+    public function findUser($user, $form, $file_name)
+    {   
+        $data = json_decode(file_get_contents($file_name));
+        $email = $form->get('email')->getData();
+        foreach ($data as $user) {
+            foreach ($user as $key => $value) {
+                if ($key === 'email') 
+                {
+                    if ($value === $email) {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }   
+                }
+            }
+        }
+    }
 }

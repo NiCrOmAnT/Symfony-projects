@@ -28,5 +28,47 @@
         "email": "maratnureev@mail.ru",
         "password": "oiuytrert",
         "address": "Красноармейская 120"
+    },
+    {
+        "name": "Марат Нуреев",
+        "email": "maratnureev@mail.ru",
+        "password": "1234545456",
+        "address": "Красноармейская 120"
+    },
+    {
+        "name": "Марат Нуреев",
+        "email": "maratnureev@gmail.com",
+        "password": "65432125",
+        "address": "Г.Йошкар-Ола"
+    },
+    {
+        "name": "Марат Нуреев",
+        "email": "maratnu@mail.ru",
+        "password": "123412341234",
+        "address": "Красноармейская 120"
+    },
+    {
+        "name": "Марат Нуреев",
+        "email": "maratnu@mail.ru",
+        "password": "123412341234",
+        "address": "Красноармейская 120"
+    },
+    {
+        "name": "Марат Нуреев",
+        "email": "maratn@mail.ru",
+        "password": "123412341234",
+        "address": "Красноармейская 120"
+    },
+    {
+        "name": "Марат Нуреев",
+        "email": "maran@mail.ru",
+        "password": "1234123412341",
+        "address": "Красноармейская 120"
+    },
+    {
+        "name": "Марат Нуреев",
+        "email": "maran@mail.ru",
+        "password": "1234123412341",
+        "address": "Красноармейская 120"
     }
 ]
