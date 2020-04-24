@@ -4,55 +4,20 @@ namespace App\Security;
 
 use Symfony\Component\Security\Core\User\UserInterface;
 
-class User implements UserInterface
+class UserSecurity
 {
-    private $email;
     private $name;
-    private $address;
 
     private $roles = [];
 
     /**
      * @var string The hashed password
      */
-    private $password;
-
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
-
-    public function setEmail(string $email): self
-    {
-        $this->email = $email;
-
-        return $this;
-    }
 
     public function getName(): ?string
     {
         return $this->name;
     }
-
-    public function setName(string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    public function getAddress(): ?string
-    {
-        return $this->address;
-    }
-
-    public function setAddress(string $address): self
-    {
-        $this->address = $address;
-
-        return $this;
-    }
-
     /**
      * A visual identifier that represents this user.
      *
@@ -85,18 +50,6 @@ class User implements UserInterface
     /**
      * @see UserInterface
      */
-    public function getPassword(): string
-    {
-        return (string) $this->password;
-    }
-
-    public function setPassword(string $password): self
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
     /**
      * @see UserInterface
      */

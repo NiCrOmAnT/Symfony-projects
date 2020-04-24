@@ -1,0 +1,14 @@
+[
+    {
+        "name": "Марат Нуреев",
+        "email": "maratnureev@mail.ru",
+        "password": "87654321",
+        "address": "Красноармейская 120"
+    },
+    {
+        "name": "Марат Нуреев1",
+        "email": "maratnureev1@mail.ru",
+        "password": "0987654321",
+        "address": "Красноармейская 120"
+    }
+]

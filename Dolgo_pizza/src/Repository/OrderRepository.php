@@ -8,11 +8,12 @@ use App\Entity\Order;
 
 class OrderRepository
 {
-    public function addOrder($order, $pizza):void
+    private const ordersFile = 'data/orders.json';
+
+    public function addOrder($order, $pizza): void
     {
-        $fileName = 'orders.json';
-        $data = json_decode(file_get_contents($fileName));
-        $number = count($data) + 1; 
+        $orders = json_decode(file_get_contents(self::ordersFile));
+        $number = count($orders) + 1; 
         $order->setNumber($number);
         $order->setPizza($pizza['name']);
         $order->setPrice($pizza['price']);
@@ -20,7 +21,8 @@ class OrderRepository
         $order->setAddress('//Адрес пользователя');
         $order->setStatus('Готовится');
 
-        $orderData = [
+        $orderData = 
+        [
             'number' => $order->getNumber(),
             'pizza' => $order->getPizza(),
             'price' => $order->getPrice(),
@@ -30,8 +32,14 @@ class OrderRepository
         ];
         
         
-        array_push($data, $orderData);
-        file_put_contents($fileName, json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+        array_push($orders, $orderData);
+        file_put_contents(self::ordersFile, json_encode($orders, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+    }
+
+    public function listOrders()
+    {
+        $orders = json_decode(file_get_contents(self::ordersFile));
+        return $orders;
     }
 }
    

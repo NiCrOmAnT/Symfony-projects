@@ -2,7 +2,8 @@
 
 namespace App\Controller;
 
-use App\Security\User;
+use App\Security\UserSecurity;
+use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,15 +23,14 @@ class SignUpContoller extends AbstractController
     {
         $user = new User(); 
         $form = $this->createForm(RegistrationFormType::class, $user);
-        $file_name = 'data.json';
         $form->handleRequest($request);
         
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            if (!UserRepository::findUser($user, $form, $file_name)) 
+        if ($form->isSubmitted() && $form->isValid()) 
+        {
+            if (!UserRepository::findUser($user, $form)) 
             {        
                 // return $this->redirect("/", 308);
-                $user = UserRepository::addUser($user, $form, $file_name);
+                $user = UserRepository::addUser($user, $form);
                 $this->addFlash('success', 'Вы успешно зарегистрированы!');
             }
             else
@@ -39,7 +39,8 @@ class SignUpContoller extends AbstractController
             }
         } 
 
-        return $this->render('sign_up_page/sign_up_page.html.twig', [
+        return $this->render('sign_up_page/sign_up_page.html.twig', 
+        [
             'registrationForm' => $form->createView(),
         ]);     
     }
