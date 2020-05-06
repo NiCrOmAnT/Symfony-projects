@@ -21,13 +21,13 @@
             <div class="row">
               {% for pizza in pizzas %}
                 <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 pizza_block">
-                  <img class="pizza_image" src="images/pizza.png">
+                  <img class="pizza_image" src="images/pizza{{pizza.id}}.jpg">
                   <div>
                     <h2 class="pizza_name">{{pizza.name}}</h2>
                     <p class="about_pizza">{{pizza.about}}</p>
                     <p class="price_block">
-                      <p class="price">{{pizza.price}}</p>
-                      <button id="buy{{pizza.number}}" class="buy_button">
+                      <p class="price">от {{pizza.price}}р</p>
+                      <button id="buy{{pizza.id}}" class="buy_button">
                         Купить 
                       </button>
                     </p>
@@ -49,9 +49,9 @@
             </tr>
             {% for order in orders %}
               <tr>
-                <td class="order_number">#{{order.number}}</td>
+                <td class="order_number">#{{order.id}}</td>
                 <td>{{order.pizza}}</td>
-                <td>{{order.price}}</td>
+                <td>{{order.price}}р</td>
                 <td>{{order.name}}</td>
                 <td>{{order.address}}</td>
                 <td>{{order.status}}</td>

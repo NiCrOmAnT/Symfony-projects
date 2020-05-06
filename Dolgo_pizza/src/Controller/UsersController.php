@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Repository\UserRepository;
+use App\Entity\User;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Persistence\ManagerRegistry;
 
 
 
@@ -15,7 +17,8 @@ class UsersController extends AbstractController
     */
     public function renderUsers()
     {
-        $users = UserRepository::listUsers();        
+        $repository = $this->getDoctrine()->getRepository(User::class);
+        $users = $repository->findAll();        
         return $this->render('pages/users_page.html.twig', ['users' => $users]);
     }
 }

@@ -1,12 +1,15 @@
 {% extends 'base.html.twig' %}
     
-      
+    {% block script %}
+      <script src="js/form.js" type="text/javascript" async> </script>
+    {% endblock %}  
     {% block nav %}
       <a href="/login"><button class="login_button">Вход</button></a> 
     {% endblock %}
     {% block content %}
       <div class="form_block">
         <h3 class="sing_up_header">Регистрация</h3>
+        <div class="error"></div>
         {{ form_start(registrationForm) }}
           {{ form_row(registrationForm.name) }}
           {{ form_row(registrationForm.email) }}
@@ -14,6 +17,5 @@
           {{ form_row(registrationForm.address) }}
           <input class="submit_button" type="submit" name="submit" value="Зарегистрироваться">
         {{ form_end(registrationForm) }}  
-        </form>
       </div>
     {% endblock %}

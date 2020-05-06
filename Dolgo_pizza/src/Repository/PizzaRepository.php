@@ -2,41 +2,47 @@
 
 namespace App\Repository;
 
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\User\UserInterface;
 use App\Entity\Pizza;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Persistence\ManagerRegistry;
 
-class PizzaRepository
+/**
+ * @method Pizza|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Pizza|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Pizza[]    findAll()
+ * @method Pizza[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ */
+class PizzaRepository extends ServiceEntityRepository
 {
-    private const pizzaFile = 'data/pizzas.json';
-    
-    public function addPizza($order, $pizza):void
+    public function __construct(ManagerRegistry $registry)
     {
-        $pizzas = json_decode(file_get_contents(self::pizzaFile));
-        $number = count($pizzas) + 1; 
-        $order->setNumber($number);
-        $order->setName();
-        $order->setAbout();
-        $order->setPrice();
-
-
-        $orderData = 
-        [
-            'number' => $order->getNumber(),
-            'name' => $order->getName(),
-            'about' => $order->getAbout(),
-            'price' => $order->getPrice(),
-        ];
-        
-        
-        array_push($pizzas, $orderData);
-        file_put_contents(self::pizzaFile, json_encode($pizzas, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+        parent::__construct($registry, Pizza::class);
     }
 
-    public function listPizza()
+    /**
+     * @return Pizza[] Returns an array of Pizza objects
+     */
+    
+    public function findByExampleField($value)
     {
-        $pizzas = json_decode(file_get_contents(self::pizzaFile));
-        return $pizzas;
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.exampleField = :val')
+            ->setParameter('val', $value)
+            ->orderBy('p.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    
+    public function findOneBySomeField($value): ?Pizza
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.exampleField = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
     }
 }
-   

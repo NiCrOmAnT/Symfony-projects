@@ -10,5 +10,23 @@
         "email": "maratnureev1@mail.ru",
         "password": "0987654321",
         "address": "Красноармейская 120"
+    },
+    {
+        "name": "Марат Нуреев",
+        "email": "maratnureev@mail.ru4",
+        "password": "123445678",
+        "address": "Красноармейская 120"
+    },
+    {
+        "name": "Марат Нуреев",
+        "email": "maratnureev65@mail.ru",
+        "password": "123412341234",
+        "address": "Красноармейская 120"
+    },
+    {
+        "name": "Марат Нуреев",
+        "email": "maratnureev87@mail.ru",
+        "password": "1234567",
+        "address": "Красноармейская 120"
     }
 ]

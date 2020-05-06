@@ -2,28 +2,49 @@
 
 namespace App\Entity;
 
-use Symfony\Component\Security\Core\User\UserInterface;
+use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * @ORM\Entity(repositoryClass="App\Repository\OrderRepository")
+ * @ORM\Table(name="`order`")
+ */
 class Order
 {
-    private $number;
+    /**
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
     private $pizza;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
     private $price;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
     private $name;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
     private $address;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
     private $status;
 
-
-    public function getNumber(): ?string
+    public function getId(): ?int
     {
-        return $this->number;
-    }
-
-    public function setNumber(string $number): self
-    {
-        $this->number = $number;
-
-        return $this;
+        return $this->id;
     }
 
     public function getPizza(): ?string
@@ -38,12 +59,12 @@ class Order
         return $this;
     }
 
-    public function getPrice(): ?string
+    public function getPrice(): ?int
     {
         return $this->price;
     }
 
-    public function setPrice(string $price): self
+    public function setPrice(int $price): self
     {
         $this->price = $price;
 

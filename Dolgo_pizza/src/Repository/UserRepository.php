@@ -2,61 +2,46 @@
 
 namespace App\Repository;
 
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\User\UserInterface;
-use App\Security\UserSecurity;
 use App\Entity\User;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Persistence\ManagerRegistry;
 
-class UserRepository
+/**
+ * @method User|null find($id, $lockMode = null, $lockVersion = null)
+ * @method User|null findOneBy(array $criteria, array $orderBy = null)
+ * @method User[]    findAll()
+ * @method User[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ */
+class UserRepository extends ServiceEntityRepository
 {
-    private const userDataFile = 'data/data.json';
-
-    public function addUser($user, $form): void
+    public function __construct(ManagerRegistry $registry)
     {
-        $user->setName($form->get('name')->getData());
-        $user->setEmail($form->get('email')->getData());
-        $user->setPassword($form->get('password')->getData());
-        $user->setAddress($form->get('address')->getData());
-
-        $register_form = 
-        [
-            'name' => $user->getName(),
-            'email' => $user->getEmail(),
-            'password' => $user->getPassword(),
-            'address' => $user->getAddress(),
-        ];
-        
-        $data = json_decode(file_get_contents(self::userDataFile));
-        array_push($data, $register_form);
-        file_put_contents(self::userDataFile, json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
-
+        parent::__construct($registry, User::class);
     }
 
-    public function findUser($user, $form)
-    {   
-        $data = json_decode(file_get_contents(self::userDataFile));
-        $email = $form->get('email')->getData();
-        foreach ($data as $user) {
-            foreach ($user as $key => $value) 
-            {
-                if ($key === 'email') 
-                {
-                    if ($value === $email) 
-                    {
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }   
-                }
-            }
-        }
+    /**
+     * @return User[] Returns an array of User objects
+     */
+
+    public function findOneByField($value)
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.exampleField = :val')
+            ->setParameter('val', $value)
+            ->orderBy('u.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
     }
 
-    public function listUsers()
+    public function findOneBySomeField($value): ?User
     {
-        $users = json_decode(file_get_contents(self::userDataFile), JSON_OBJECT_AS_ARRAY);
-        return $users;
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.exampleField = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
     }
 }

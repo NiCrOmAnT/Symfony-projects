@@ -2,44 +2,49 @@
 
 namespace App\Repository;
 
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\User\UserInterface;
 use App\Entity\Order;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Persistence\ManagerRegistry;
 
-class OrderRepository
+/**
+ * @method Order|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Order|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Order[]    findAll()
+ * @method Order[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ */
+class OrderRepository extends ServiceEntityRepository
 {
-    private const ordersFile = 'data/orders.json';
-
-    public function addOrder($order, $pizza): void
+    public function __construct(ManagerRegistry $registry)
     {
-        $orders = json_decode(file_get_contents(self::ordersFile));
-        $number = count($orders) + 1; 
-        $order->setNumber($number);
-        $order->setPizza($pizza['name']);
-        $order->setPrice($pizza['price']);
-        $order->setName('//Имя пользователя');
-        $order->setAddress('//Адрес пользователя');
-        $order->setStatus('Готовится');
-
-        $orderData = 
-        [
-            'number' => $order->getNumber(),
-            'pizza' => $order->getPizza(),
-            'price' => $order->getPrice(),
-            'name' => $order->getName(),
-            'address' => $order->getAddress(),
-            'status' => $order->getStatus()
-        ];
-        
-        
-        array_push($orders, $orderData);
-        file_put_contents(self::ordersFile, json_encode($orders, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+        parent::__construct($registry, Order::class);
     }
 
-    public function listOrders()
+    // /**
+    //  * @return Order[] Returns an array of Order objects
+    //  */
+    /*
+    public function findByExampleField($value)
     {
-        $orders = json_decode(file_get_contents(self::ordersFile));
-        return $orders;
+        return $this->createQueryBuilder('o')
+            ->andWhere('o.exampleField = :val')
+            ->setParameter('val', $value)
+            ->orderBy('o.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
     }
+    */
+
+    /*
+    public function findOneBySomeField($value): ?Order
+    {
+        return $this->createQueryBuilder('o')
+            ->andWhere('o.exampleField = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+    */
 }
-   

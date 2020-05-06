@@ -248,7 +248,18 @@ th
 	font: 24px/28px Roboto;
 }
 
+.submit_button:hover
+{
+	background: #ffffff;
+	color: #000000;
+	transition: 0.5s;
+}
+
 .alert
 {
 	margin-bottom: 2rem;
+}
+.error 
+{
+	background-color: rgba(255, 0, 0, 0.452);
 }
