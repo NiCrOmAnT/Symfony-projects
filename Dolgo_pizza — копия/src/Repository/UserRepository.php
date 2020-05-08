@@ -14,7 +14,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method User[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 
-class UserRepository extends ServiceEntityRepository
+class UserRepository
 {
     private $entityManager;
 
@@ -25,8 +25,8 @@ class UserRepository extends ServiceEntityRepository
 
     public function add(User $user):void
     {
-        $this -> entityManager->persist($user);
-        $this -> entityManager->flush();
+        $this->entityManager->persist($user);
+        $this->entityManager->flush();
     }
 
     /**

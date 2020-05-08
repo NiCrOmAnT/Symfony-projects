@@ -11,7 +11,16 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class SignUpContoller extends AbstractController
 {
-    /**
+    
+    
+    private $service;
+
+    public function __construct(UserService $service)
+    {
+        $this->service = $service;
+    }
+
+     /**
      * @Route("/registration")
      */
     public function renderSignUp(request $request)
@@ -19,7 +28,7 @@ class SignUpContoller extends AbstractController
         $entityManager = $this->getDoctrine()->getManager();
         $repository = $this->getDoctrine()->getRepository(User::class);
         
-        $service = new UserService();
+        // $service = new UserService();
         $form = $this->createForm(RegistrationFormType::class);
         $form->handleRequest($request);
 
@@ -34,7 +43,7 @@ class SignUpContoller extends AbstractController
         {
             if ($newUser === null) 
             {        
-                $service -> addUser($name, $email, $password, $address, $entityManager);
+                // $service -> addUser($name, $email, $password, $address, $entityManager);
                 $this->addFlash('success', 'Вы успешно зарегистрированы!');
                 return $this->redirect("/", 308);
             }
