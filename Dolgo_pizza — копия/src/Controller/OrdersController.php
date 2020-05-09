@@ -11,18 +11,23 @@ use Symfony\Component\HttpFoundation\Response;
 
 class OrdersController extends AbstractController
 {
+    private $service;
+
+    public function __construct(OrderService $service)
+    {
+        $this->service = $service;
+    }
+
     /**
     * @Route("/orders")
     */
     public function newOrder()
     {
         $pizzaId = $_POST['id'];
-        $entityManager = $this->getDoctrine()->getManager();
         $name = 'Имя пользователя';
         $address = 'Адрес пользователя';
         $status = 'Готовится';
-        $pizzaRepository = $this->getDoctrine()->getRepository(Pizza::class);
-        OrderService::addOrder($name, $address, $status, $pizzaId, $entityManager, $pizzaRepository);
+        $this->service->addOrder($name, $address, $status, $pizzaId);
         return new Response(json_encode(['success' => 1]));          
     }
 }
