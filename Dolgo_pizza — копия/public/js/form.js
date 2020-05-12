@@ -19,7 +19,6 @@ form.addEventListener('submit', function (event) {
     if (!validateEmail(email)){
         event.preventDefault();
         email.classList.add("error");
-        email.setCustomValidity("Почта введена неверно.");
         validity = false;
     }
 })

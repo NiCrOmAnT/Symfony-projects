@@ -18,13 +18,13 @@ class OrderService
     }
     public function addOrder(string $name, string $address, string $status, string $pizzaId): void
     {
-        $order = new Order;
+        $order = new Order();
         $pizza = $this->pizzaRepository->find($pizzaId);
         $order->setPizza($pizza->getName());
         $order->setPrice($pizza->getPrice());
-        $order->setName('//Имя пользователя');
-        $order->setAddress('//Адрес пользователя');
-        $order->setStatus('Готовится');
+        $order->setName($name);
+        $order->setAddress($address);
+        $order->setStatus($status);
         $this->orderRepository->add($order);
     }  
 }

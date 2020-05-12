@@ -2,10 +2,12 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
+use App\Exception\InvalidEmailException;
+use App\Exception\InvalidNameException;
+use App\Exception\InvalidPasswordException;
+use App\Exception\UserAlreadyExistsException;
 use App\Form\RegistrationFormType;
 use App\Service\UserService;
-use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -38,17 +40,29 @@ class SignUpContoller extends AbstractController
     
         if ($form->isSubmitted() && $form->isValid()) 
         {
-            $isExist = $this->service->addUser($name, $email, $password, $address);
-            if (!$isExist)
-            {        
-                
+            try
+            {
+                $this->service->addUser($name, $email, $password, $address);
                 $this->addFlash('success', 'Вы успешно зарегистрированы!');
                 return $this->redirect("/", 308);
             }
-            else
+            catch(UserAlreadyExistsException $e)
             {
                 $this->addFlash('warning', 'Пользователь с такой почтой уже существует.');
             }
+            catch(InvalidPasswordException $e)
+            {
+                $this->addFlash('warning', 'Слишком короткий пароль.');
+            }
+            catch(InvalidNameException $e)
+            {
+                $this->addFlash('warning', 'Имя должно содержать только буквы');
+            }
+            catch(InvalidEmailException $e)
+            {
+                $this->addFlash('warning', 'Почта указана не корректно');
+            }
+                
         } 
 
         return $this->render('sign_up_page/sign_up_page.html.twig', 
