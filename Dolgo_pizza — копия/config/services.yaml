@@ -51,3 +51,25 @@ services:
     App\Controller\OrdersController:
         arguments:
             $service: '@App\Service\OrderService'
+    
+    # ---------Query----------
+    App\Query\UserQueryService:
+        arguments:
+            $repository: '@App\Repository\UserRepository'
+
+    App\Query\PizzaQueryService:
+        arguments:
+            $repository: '@App\Repository\PizzaRepository'
+    
+    App\Query\OrderQueryService:
+        arguments:
+            $repository: '@App\Repository\OrderRepository'
+
+    App\Controller\UsersController:
+        arguments:
+            $query: '@App\Query\UserQueryService'
+
+    App\Controller\HomeController:
+        arguments:
+            $pizzaQuery: '@App\Query\PizzaQueryService'
+            $orderQuery: '@App\Query\OrderQueryService'                 

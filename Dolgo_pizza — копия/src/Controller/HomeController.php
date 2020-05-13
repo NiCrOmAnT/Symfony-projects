@@ -4,22 +4,29 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Repository\OrderRepository;
-use App\Repository\PizzaRepository;
 use App\Entity\Pizza;
 use App\Entity\Order;
+use App\Query\OrderQueryService;
+use App\Query\PizzaQueryService;
 
 class HomeController extends AbstractController
 {
+    private $pizzaQuery;
+    private $orderQuery;
+
+    public function __construct(PizzaQueryService $pizzaQuery, OrderQueryService $orderQuery)
+    {
+        $this->pizzaQuery = $pizzaQuery;
+        $this->orderQuery = $orderQuery;
+    }
+
     /**
     * @Route()
     */
     public function renderMainPage()
     {
-        $orderRepository = $this->getDoctrine()->getRepository(Order::class);
-        $pizzaRepository = $this->getDoctrine()->getRepository(Pizza::class);
-        $orders = $orderRepository->findAll();
-        $pizzas = $pizzaRepository->findAll();
+        $orders = $this->orderQuery->findAll();
+        $pizzas = $this->pizzaQuery->findAll();
         return $this->render('home_page/menu.html.twig', 
         [
             'pizzas' => $pizzas,

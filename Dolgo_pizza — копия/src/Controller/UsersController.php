@@ -4,21 +4,23 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Entity\User;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Persistence\ManagerRegistry;
-
-
+use App\Query\UserQueryService;
 
 class UsersController extends AbstractController
 {
+    private $query;
+
+    public function __construct(UserQueryService $query)
+    {
+        $this->query = $query;
+    }
+
     /**
     * @Route("/users")
     */
     public function renderUsers()
     {
-        $repository = $this->getDoctrine()->getRepository(User::class);
-        $users = $repository->findAll();        
+        $users = $this->query->findAll();
         return $this->render('pages/users_page.html.twig', ['users' => $users]);
     }
 }

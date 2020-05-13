@@ -16,6 +16,7 @@ class UserService
     {
         $this->repository = $repository;
     }
+    
     public function addUser(string $name, string $email, string $password, string $address): void
     {
         $existedUser = $this->repository->findOneBy(['email' => $email]);
