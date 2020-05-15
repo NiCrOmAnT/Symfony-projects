@@ -14,11 +14,16 @@ class UserQueryService
         $this->repository = $repository;
     }
 
+    public function addData(UserData $userData, array $users): void
+    {
+        $userData = $users;
+    }
+
     public function findAll()
     {
         $userData = new UserData;
         $users = $this->repository->findAll();
-        $userData = array_map(null, $users);
+        $userData = array_map($this->addData($userData, $users), $users);
         return $userData;
     }
 }

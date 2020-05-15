@@ -14,11 +14,16 @@ class PizzaQueryService
         $this->repository = $repository;
     }
 
+    public function addData(PizzaData $pizzaData, array $pizzas):void
+    {
+        $pizzaData = $pizzas;
+    }
+
     public function findAll()
     {
         $pizzaData = new PizzaData;
         $pizzas = $this->repository->findAll();
-        $pizzaData = array_map(null, $pizzas);
+        $pizzaData = array_map($this->addData($pizzaData, $pizzas), $pizzas);
         return $pizzaData;
     }
 }
