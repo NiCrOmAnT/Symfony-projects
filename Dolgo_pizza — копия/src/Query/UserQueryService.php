@@ -21,7 +21,7 @@ class UserQueryService
 
     public function findAll()
     {
-        $userData = new UserData;
+        $userData = new UserData();
         $users = $this->repository->findAll();
         $userData = array_map($this->addData($userData, $users), $users);
         return $userData;

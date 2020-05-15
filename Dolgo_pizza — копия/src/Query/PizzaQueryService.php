@@ -21,7 +21,7 @@ class PizzaQueryService
 
     public function findAll()
     {
-        $pizzaData = new PizzaData;
+        $pizzaData = new PizzaData();
         $pizzas = $this->repository->findAll();
         $pizzaData = array_map($this->addData($pizzaData, $pizzas), $pizzas);
         return $pizzaData;
