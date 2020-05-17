@@ -4,6 +4,7 @@ namespace App\Query;
 
 use App\Repository\UserRepository;
 use App\Query\UserData;
+use App\Entity\User;
 
 class UserQueryService
 {
@@ -14,16 +15,19 @@ class UserQueryService
         $this->repository = $repository;
     }
 
-    public function addData(UserData $userData, array $users): void
-    {
-        $userData = $users;
-    }
-
     public function findAll()
     {
-        $userData = new UserData();
         $users = $this->repository->findAll();
-        $userData = array_map($this->addData($userData, $users), $users);
-        return $userData;
+        return array_map(static function(User $users): UserData 
+        {
+            $userData = new UserData();
+            $userData->setId($users->getId());
+            $userData->setName($users->getName());
+            $userData->setEmail($users->getEmail());
+            $userData->setPassword($users->getPassword());
+            $userData->setAddress($users->getAddress());
+            return $userData;
+        },
+        $users);
     }
 }

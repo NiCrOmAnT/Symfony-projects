@@ -43,6 +43,11 @@ class OrderData
      */
     private $status;
 
+    public function setId(int $id): void
+    {
+        $this->id = $id;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -53,11 +58,9 @@ class OrderData
         return $this->pizza;
     }
 
-    public function setPizza(string $pizza): self
+    public function setPizza(string $pizza): void
     {
         $this->pizza = $pizza;
-
-        return $this;
     }
 
     public function getPrice(): ?int
@@ -65,11 +68,9 @@ class OrderData
         return $this->price;
     }
 
-    public function setPrice(int $price): self
+    public function setPrice(int $price): void
     {
         $this->price = $price;
-
-        return $this;
     }
 
     public function getName(): ?string
@@ -77,11 +78,9 @@ class OrderData
         return $this->name;
     }
 
-    public function setName(string $name): self
+    public function setName(string $name): void
     {
         $this->name = $name;
-
-        return $this;
     }
 
     public function getAddress(): ?string
@@ -89,11 +88,9 @@ class OrderData
         return $this->address;
     }
 
-    public function setAddress(string $address): self
+    public function setAddress(string $address): void
     {
         $this->address = $address;
-
-        return $this;
     }
 
     public function getStatus(): ?string
@@ -101,10 +98,8 @@ class OrderData
         return $this->status;
     }
 
-    public function setStatus(string $status): self
+    public function setStatus(string $status): void
     {
         $this->status = $status;
-
-        return $this;
     }
 }

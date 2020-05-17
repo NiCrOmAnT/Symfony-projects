@@ -15,16 +15,20 @@ class OrderQueryService
         $this->repository = $repository;
     }
 
-    public function addData(OrderData $orderData, array $orders): void
-    {
-        $orderData = $orders;
-    }
-
     public function findAll()
     {
-        $orderData = new OrderData();
         $orders = $this->repository->findAll();
-        $orderData = array_map($this->addData($orderData, $orders), $orders);
-        return $orderData;
+        return array_map(static function(Order $order): OrderData 
+        {
+            $orderData = new OrderData();
+            $orderData->setId($order->getId());
+            $orderData->setPizza($order->getPizza());
+            $orderData->setPrice($order->getPrice());
+            $orderData->setName($order->getName());
+            $orderData->setAddress($order->getAddress());
+            $orderData->setStatus($order->getStatus());
+            return $orderData;
+        }, 
+        $orders);
     }
 }

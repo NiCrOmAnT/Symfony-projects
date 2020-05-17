@@ -35,16 +35,19 @@ class PizzaData
         return $this->id;
     }
 
+    public function setId(int $id): void
+    {
+        $this->id = $id;
+    }
+
     public function getName(): ?string
     {
         return $this->name;
     }
 
-    public function setName(string $name): self
+    public function setName(string $name): void
     {
         $this->name = $name;
-
-        return $this;
     }
 
     public function getAbout(): ?string
@@ -52,11 +55,9 @@ class PizzaData
         return $this->about;
     }
 
-    public function setAbout(string $about): self
+    public function setAbout(string $about): void
     {
         $this->about = $about;
-
-        return $this;
     }
 
     public function getPrice(): ?int
@@ -64,10 +65,8 @@ class PizzaData
         return $this->price;
     }
 
-    public function setPrice(int $price): self
+    public function setPrice(int $price): void
     {
         $this->price = $price;
-
-        return $this;
     }
 }

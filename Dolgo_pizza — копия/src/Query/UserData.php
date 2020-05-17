@@ -41,16 +41,19 @@ class UserData
         return $this->id;
     }
 
+    public function setId(int $id): void
+    {
+        $this->id = $id;
+    }
+
     public function getName(): ?string
     {
         return $this->name;
     }
 
-    public function setName(string $name): self
+    public function setName(string $name): void
     {
         $this->name = $name;
-
-        return $this;
     }
 
     public function getEmail(): ?string
@@ -58,11 +61,9 @@ class UserData
         return $this->email;
     }
 
-    public function setEmail(string $email): self
+    public function setEmail(string $email): void
     {
         $this->email = $email;
-
-        return $this;
     }
 
     public function getPassword(): ?string
@@ -70,11 +71,9 @@ class UserData
         return $this->password;
     }
 
-    public function setPassword(string $password): self
+    public function setPassword(string $password): void
     {
         $this->password = $password;
-
-        return $this;
     }
 
     public function getAddress(): ?string
@@ -82,10 +81,8 @@ class UserData
         return $this->address;
     }
 
-    public function setAddress(string $address): self
+    public function setAddress(string $address): void
     {
         $this->address = $address;
-
-        return $this;
     }
 }

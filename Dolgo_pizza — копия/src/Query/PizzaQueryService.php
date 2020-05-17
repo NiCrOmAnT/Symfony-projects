@@ -2,6 +2,7 @@
 
 namespace App\Query;
 
+use App\Entity\Pizza;
 use App\Query\PizzaData;
 use App\Repository\PizzaRepository;
 
@@ -14,16 +15,18 @@ class PizzaQueryService
         $this->repository = $repository;
     }
 
-    public function addData(PizzaData $pizzaData, array $pizzas):void
-    {
-        $pizzaData = $pizzas;
-    }
-
     public function findAll()
     {
-        $pizzaData = new PizzaData();
         $pizzas = $this->repository->findAll();
-        $pizzaData = array_map($this->addData($pizzaData, $pizzas), $pizzas);
-        return $pizzaData;
+        return array_map(static function(Pizza $pizzas): PizzaData 
+        {
+            $pizzaData = new PizzaData();
+            $pizzaData->setId($pizzas->getId());
+            $pizzaData->setName($pizzas->getName());
+            $pizzaData->setAbout($pizzas->getAbout());
+            $pizzaData->setPrice($pizzas->getPrice());
+            return $pizzaData;
+        }, 
+        $pizzas);
     }
 }

@@ -28,7 +28,7 @@ class UserService
         {
             throw new InvalidPasswordException();
         }
-        if (!preg_match('/^[a-zA-Zа-яёА-ЯЁ\s\-]+$/', $name))
+        if (!preg_match("/^[а-я ё А-Я Ё a-z A-Z ]+$/u", $name))
         {
             throw new InvalidNameException();
         }
