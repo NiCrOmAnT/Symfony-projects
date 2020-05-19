@@ -16,5 +16,5 @@ async function buy(id) {
         })
         .then(response => response.json())
         .then((data) =>  console.log(data))
-        .then(document.location.reload());
+        // .then(document.location.reload());
 }

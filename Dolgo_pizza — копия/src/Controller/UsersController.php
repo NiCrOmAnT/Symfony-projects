@@ -16,7 +16,7 @@ class UsersController extends AbstractController
     }
 
     /**
-    * @Route("/users")
+    * @Route("/users", name="users")
     */
     public function renderUsers()
     {

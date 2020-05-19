@@ -43,12 +43,16 @@ class SignUpContoller extends AbstractController
             try
             {
                 $this->service->addUser($name, $email, $password, $address);
+                $this->service->addAdmin('Админ');
                 $this->addFlash('success', 'Вы успешно зарегистрированы!');
-                return $this->redirect("/", 308);
+                return $this->redirectToRoute("home");
             }
             catch(UserAlreadyExistsException $e)
             {
                 $this->addFlash('warning', 'Пользователь с такой почтой уже существует.');
+                return $this->redirectToRoute("login", [
+                    'last_email' => $email
+                ]);
             }
             catch(InvalidPasswordException $e)
             {
@@ -68,6 +72,6 @@ class SignUpContoller extends AbstractController
         return $this->render('sign_up_page/sign_up_page.html.twig', 
         [
             'registrationForm' => $form->createView(),
-        ]);     
+        ]);
     }
 }

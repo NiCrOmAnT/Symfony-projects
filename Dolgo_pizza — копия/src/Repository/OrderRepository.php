@@ -23,9 +23,14 @@ class OrderRepository extends ServiceEntityRepository
         $this->entityManager = $entityManager;
     }
 
-    public function add(Order $order):void
+    public function add(Order $order): void
     {
         $this->entityManager->persist($order);
+        $this->entityManager->flush();
+    }
+
+    public function update(Order $order): void
+    {
         $this->entityManager->flush();
     }
 

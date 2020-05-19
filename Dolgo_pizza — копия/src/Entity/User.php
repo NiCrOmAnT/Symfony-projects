@@ -3,11 +3,12 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
-class User
+class User implements UserInterface, \Serializable
 {
     /**
      * @ORM\Id()
@@ -35,6 +36,18 @@ class User
      * @ORM\Column(type="string", length=255)
      */
     private $address;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $username;
+
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $roles = [];
+
+
 
     public function getId(): ?int
     {
@@ -87,5 +100,62 @@ class User
         $this->address = $address;
 
         return $this;
+    }
+
+    public function getUsername(): ?string
+    {
+        return $this->username;
+    }
+
+    public function setUsername(): self
+    {
+        $this->username = $this->email;
+
+        return $this;
+    }
+
+    public function setRoleAdmin()
+    {
+        $roles = $this->roles;
+        $roles[] = 'ROLE_ADMIN';
+
+        return array_unique($roles);
+    }
+
+    public function getRoles()
+    {
+        $roles = $this->roles;
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function getSalt() {}
+
+    public function eraseCredentials() {}
+
+    public function serialize()
+    {
+        return serialize([
+            $this->id,
+            $this->email,
+            $this->password,
+            $this->address,
+            $this->name,
+            $this->username
+        ]);
+    }
+
+    public function unserialize($string)
+    {
+        list (
+            $this->id,
+            $this->email,
+            $this->password,
+            $this->address,
+            $this->name,
+            $this->username
+        ) = unserialize($string, ['allowed_classes' => false]);
+            
     }
 }

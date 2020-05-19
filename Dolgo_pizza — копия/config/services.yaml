@@ -51,7 +51,12 @@ services:
     App\Controller\OrdersController:
         arguments:
             $service: '@App\Service\OrderService'
-    
+            $security: '@Symfony\Component\Security\Core\Security'
+
+    App\Controller\StatusController:
+        arguments:
+            $service: '@App\Service\OrderService'
+
     # ---------Query----------
     App\Query\UserQueryService:
         arguments:
@@ -72,4 +77,6 @@ services:
     App\Controller\HomeController:
         arguments:
             $pizzaQuery: '@App\Query\PizzaQueryService'
-            $orderQuery: '@App\Query\OrderQueryService'                 
+            $orderQuery: '@App\Query\OrderQueryService'
+
+            

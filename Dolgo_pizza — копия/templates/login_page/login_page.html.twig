@@ -6,9 +6,9 @@
     {% block content %}
       <div class="form_block">
         <h3 class="log_in_header">Вход</h3>
-        <form>
-          <input class="field" type="email" name="email" placeholder="Почта"> 
-          <input class="field" type="password" name="password" placeholder="Пароль">  
+        <form action="{{ path('login')}}" method="POST">
+          <input class="field" type="email" name="_username" value="{{ last_email }}" placeholder="Почта"> 
+          <input class="field" type="password" name="_password" placeholder="Пароль">  
           <input class="submit_button" type="submit" value="Войти">    
         </form>
       </div>

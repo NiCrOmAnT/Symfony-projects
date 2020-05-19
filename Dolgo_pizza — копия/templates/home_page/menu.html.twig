@@ -1,8 +1,15 @@
 {% extends 'base.html.twig' %}
-
+    {% block script %}
+      <script src="js/status.js" type="text/javascript" async> </script>
+    {% endblock %}  
     {% block nav %}
+    {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
       <a href="/registration"><button class="reg_button">Регистрация</button></a>
-      <a href="/login"><button class="login_button">Вход</button></a> 
+      <a href="/login"><button class="login_button">Вход</button></a>
+    {% endif %}
+    {% if is_granted('ROLE_USER') %}  
+      <a href="/logout"><button class="login_button">Выход</button></a>
+    {% endif %}    
     {% endblock %}
     {% block content %}
       <div class="container-fluid">
@@ -54,11 +61,21 @@
                 <td>{{order.price}}р</td>
                 <td>{{order.name}}</td>
                 <td>{{order.address}}</td>
-                <td>{{order.status}}</td>
+                {% if is_granted('ROLE_ADMIN') %}
+                  <td> 
+                    <select onchange="selectStatus({{order.id}})" id="status">
+                      <option {% if order.status == 'Принято' %} selected {% endif %} value="Принято">Принято</option>
+                      <option {% if order.status == 'Готовится' %} selected {% endif %} value="Готовится">Готовится</option>
+                      <option {% if order.status == 'В пути' %} selected {% endif %} value="В пути">В пути</option>
+                      <option {% if order.status == 'Доставлено' %} selected {% endif %} value="Доставлено">Доставлено</option>
+                    </select>
+                  </td>
+                {% else %}
+                  <td>{{order.status}}</td>
+                {% endif %}  
               </tr>
             {% endfor %}
           </table>
         </div>
       </div>
     {% endblock %}  
-

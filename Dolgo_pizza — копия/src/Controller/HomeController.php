@@ -4,8 +4,6 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Entity\Pizza;
-use App\Entity\Order;
 use App\Query\OrderQueryService;
 use App\Query\PizzaQueryService;
 
@@ -21,7 +19,7 @@ class HomeController extends AbstractController
     }
 
     /**
-    * @Route()
+    * @Route(name="home")
     */
     public function renderMainPage()
     {
