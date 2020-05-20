@@ -1,15 +1,26 @@
 {% extends 'base.html.twig' %}
-  
     {% block nav %}
       <a href="/registration"><button class="reg_button">Регистрация</button></a>
     {% endblock %}
+
     {% block content %}
+      {% if error %}
+        <div class="alert alert-danger">Почта или пароль введены неверно</div>
+      {% endif %}
+
+      {% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+      {% endif %}
+
       <div class="form_block">
         <h3 class="log_in_header">Вход</h3>
-        <form action="{{ path('login')}}" method="POST">
-          <input class="field" type="email" name="_username" value="{{ last_email }}" placeholder="Почта"> 
-          <input class="field" type="password" name="_password" placeholder="Пароль">  
-          <input class="submit_button" type="submit" value="Войти">    
+        <form id="login" action="{{ path('login')}}" method="POST">
+          <input class="field" type="email" name="email" id="inputEmail" value="{{ last_email }}" placeholder="Почта" required autofocus> 
+          <input class="field" type="password" name="password" id="inputPassword" placeholder="Пароль" required>  
+          <input class="submit_button" type="submit" value="Войти">
+          <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">    
         </form>
       </div>
     {% endblock %}

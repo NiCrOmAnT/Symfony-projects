@@ -39,6 +39,11 @@ services:
         arguments:
             $service: '@App\Service\UserService'
 
+    App\Controller\AuthController:
+        arguments:
+            $repository: '@App\Repository\UserRepository'        
+
+
     # ----------Order------------
     App\Repository\OrderRepository:
         arguments:
