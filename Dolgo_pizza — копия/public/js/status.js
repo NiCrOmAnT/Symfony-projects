@@ -1,9 +1,8 @@
 
-
 async function selectStatus(id) {
-    let status = document.getElementById("status");
+    let status = document.getElementById('status' + id);
     let selected = status.options[status.selectedIndex].value;
-    console.log(selected, id);
+
     let body = new FormData;
     body.append('selected', selected);
     body.append('id', id);

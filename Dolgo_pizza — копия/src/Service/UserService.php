@@ -20,7 +20,7 @@ class UserService
         $this->encoder = $encoder;
     }
     
-    public function addUser(string $name, string $email, string $password, string $address): void
+    public function createUser(string $name, string $email, string $password, string $address): void
     {
         $existedUser = $this->repository->findOneBy(['email' => $email]);
         if ($existedUser !== null)
@@ -48,12 +48,13 @@ class UserService
         );
         $user->setUsername($email);
         $user->setAddress($address);
+        $user->setRole('ROLE_USER');
         $this->repository->add($user);    
     }
 
     public function addAdmin(string $adminName): void
     {
         $admin = $this->repository->findOneBy(['name' => $adminName]);
-        $admin->setRoleAdmin();
+        $admin->setRole('ROLE_ADMIN');
     }
 }

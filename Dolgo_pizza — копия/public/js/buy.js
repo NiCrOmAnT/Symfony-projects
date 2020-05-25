@@ -1,3 +1,16 @@
+window.onload = async function selectedOrders(user){
+    let body = new FormData;
+    fetch('/selected',
+        {
+            method: 'POST',
+            body
+        })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .then(function (data) {
+
+        }
+}
 
 let buyButtons = document.querySelectorAll('.buy_button');
 
@@ -15,6 +28,7 @@ async function buy(id) {
             body
         })
         .then(response => response.json())
-        .then((data) =>  console.log(data))
-        // .then(document.location.reload());
+        .then(data =>  console.log(data))
+        .then(document.location.reload());
 }
+

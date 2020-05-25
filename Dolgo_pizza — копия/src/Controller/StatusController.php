@@ -23,7 +23,7 @@ class StatusController extends AbstractController
     {
         $status = $_POST['selected'];
         $id = $_POST['id'];
-        $this->service->newStatus($status, $id);
+        $this->service->updateStatus($status, $id);
         return new Response(json_encode(['success' => 1]));          
     }
 }

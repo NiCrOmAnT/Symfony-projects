@@ -42,10 +42,12 @@ class SignUpContoller extends AbstractController
         {
             try
             {
-                $this->service->addUser($name, $email, $password, $address);
+                $this->service->createUser($name, $email, $password, $address);
                 $this->service->addAdmin('Админ');
                 $this->addFlash('success', 'Вы успешно зарегистрированы!');
-                return $this->redirectToRoute("home");
+                return $this->redirectToRoute("login", [
+                    'last_email' => $email
+                ]);
             }
             catch(UserAlreadyExistsException $e)
             {

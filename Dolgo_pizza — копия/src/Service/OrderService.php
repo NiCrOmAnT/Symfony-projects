@@ -17,7 +17,7 @@ class OrderService
         $this->pizzaRepository = $pizzaRepository;
     }
 
-    public function addOrder(string $name, string $address, string $status, string $pizzaId): void
+    public function createOrder(string $name, string $address, string $status, string $pizzaId): void
     {
         $order = new Order();
         $pizza = $this->pizzaRepository->find($pizzaId);
@@ -29,7 +29,7 @@ class OrderService
         $this->orderRepository->add($order);
     }
     
-    public function newStatus(string $status, int $id): void
+    public function updateStatus(string $status, int $id): void
     {
         $order = $this->orderRepository->find($id);
         $order->setStatus($status);

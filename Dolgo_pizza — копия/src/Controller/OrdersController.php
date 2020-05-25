@@ -29,7 +29,20 @@ class OrdersController extends AbstractController
         $name = $user->getName();
         $address = $user->getAddress();
         $status = 'Принято';
-        $this->service->addOrder($name, $address, $status, $pizzaId);
+        $this->service->createOrder($name, $address, $status, $pizzaId);
         return new Response(json_encode(['success' => 1]));          
+    }
+
+    /**
+    * @Route("/selected")
+    */
+    public function selectedOrders()
+    {
+        $user = $this->security->getUser();
+        $name = $user->getName();
+        return new Response(json_encode([
+            'success' => 1,
+            'name' => $name
+        ]));
     }
 }

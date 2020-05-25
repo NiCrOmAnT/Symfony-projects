@@ -34,9 +34,18 @@
                     <p class="about_pizza">{{pizza.about}}</p>
                     <p class="price_block">
                       <p class="price">от {{pizza.price}}р</p>
-                      <button id="buy{{pizza.id}}" class="buy_button">
-                        Купить 
-                      </button>
+                      {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <a href="/login">
+                          <button class="buy_button">
+                            Купить 
+                          </button>
+                        </a>
+                      {% endif %}
+                      {% if is_granted('ROLE_USER') %}
+                        <button id="buy{{pizza.id}}" class="buy_button">
+                          Купить 
+                        </button>
+                      {% endif %} 
                     </p>
                   </div>
                 </div>
@@ -63,7 +72,7 @@
                 <td>{{order.address}}</td>
                 {% if is_granted('ROLE_ADMIN') %}
                   <td> 
-                    <select onchange="selectStatus({{order.id}})" id="status">
+                    <select onchange="selectStatus({{order.id}})" class="status" id="status{{order.id}}">
                       <option {% if order.status == 'Принято' %} selected {% endif %} value="Принято">Принято</option>
                       <option {% if order.status == 'Готовится' %} selected {% endif %} value="Готовится">Готовится</option>
                       <option {% if order.status == 'В пути' %} selected {% endif %} value="В пути">В пути</option>
