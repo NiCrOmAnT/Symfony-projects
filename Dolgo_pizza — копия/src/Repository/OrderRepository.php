@@ -38,13 +38,12 @@ class OrderRepository extends ServiceEntityRepository
      * @return Order[] Returns an array of Order objects
      */
     
-    public function findByExampleField($value)
+    public function findByEmail($email)
     {
         return $this->createQueryBuilder('o')
-            ->andWhere('o.exampleField = :val')
-            ->setParameter('val', $value)
+            ->andWhere('o.email = :val')
+            ->setParameter('val', $email)
             ->orderBy('o.id', 'ASC')
-            ->setMaxResults(10)
             ->getQuery()
             ->getResult()
         ;

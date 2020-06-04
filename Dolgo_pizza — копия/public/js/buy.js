@@ -1,18 +1,23 @@
-window.onload = async function selectedOrders(user){
+let buyButtons = document.querySelectorAll('.buy_button');
+
+window.onload = async function selectedOrders(){
     let body = new FormData;
-    fetch('/selected',
+    let arr;
+    await fetch('/selected',
         {
             method: 'POST',
             body
         })
         .then(response => response.json())
-        .then(data => console.log(data))
-        .then(function (data) {
-
-        }
+        .then((data) => arr = data)
+        for (key in arr['ids']){
+            if (key){
+                let elem = document.getElementById(key);
+                console.log(elem);
+                elem.classList.add('highlight'); 
+            }
+        };
 }
-
-let buyButtons = document.querySelectorAll('.buy_button');
 
 for (let i = 1;i < buyButtons.length; i++){
     let button = document.getElementById('buy'+`${i}`);

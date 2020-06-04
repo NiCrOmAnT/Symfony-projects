@@ -64,7 +64,7 @@
               <td class="last_col" width="300">Статус</td>
             </tr>
             {% for order in orders %}
-              <tr>
+              <tr id="{{order.id}}">
                 <td class="order_number">#{{order.id}}</td>
                 <td>{{order.pizza}}</td>
                 <td>{{order.price}}р</td>

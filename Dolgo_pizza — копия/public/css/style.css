@@ -259,7 +259,13 @@ th
 {
 	margin-bottom: 2rem;
 }
+
 .error 
 {
 	background-color: rgba(255, 0, 0, 0.452);
+}
+
+.highlight
+{
+	background-color: #f2960B;
 }

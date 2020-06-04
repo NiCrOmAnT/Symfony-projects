@@ -28,8 +28,9 @@ class OrdersController extends AbstractController
         $user = $this->security->getUser();
         $name = $user->getName();
         $address = $user->getAddress();
+        $email = $user->getEmail();
         $status = 'Принято';
-        $this->service->createOrder($name, $address, $status, $pizzaId);
+        $this->service->createOrder($name, $address, $status, $pizzaId, $email);
         return new Response(json_encode(['success' => 1]));          
     }
 
@@ -38,11 +39,20 @@ class OrdersController extends AbstractController
     */
     public function selectedOrders()
     {
-        $user = $this->security->getUser();
-        $name = $user->getName();
-        return new Response(json_encode([
-            'success' => 1,
-            'name' => $name
-        ]));
+        if ($this->security->isGranted('ROLE_USER'))
+        {
+            $user = $this->security->getUser();
+            $email = $user->getEmail();
+            $ids = $this->service->findOrders($email);
+            return new Response(json_encode([
+                'success' => 1,
+                'ids' => $ids
+            ]));
+        }
+        else
+        {
+            return new Response(json_encode(['success' => 1])); 
+        }
+        
     }
 }
